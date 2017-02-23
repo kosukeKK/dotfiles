@@ -1,149 +1,71 @@
-fugitive.vim
-============
+# Indent Guides
+Indent Guides is a plugin for visually displaying indent levels in Vim.
 
-I'm not going to lie to you; fugitive.vim may very well be the best
-Git wrapper of all time.  Check out these features:
+<img src="http://i.imgur.com/ONgoj.png" width="448" height="448" alt="" />
 
-View any blob, tree, commit, or tag in the repository with `:Gedit` (and
-`:Gsplit`, `:Gvsplit`, `:Gtabedit`, ...).  Edit a file in the index and
-write to it to stage the changes.  Use `:Gdiff` to bring up the staged
-version of the file side by side with the working tree version and use
-Vim's diff handling capabilities to stage a subset of the file's
-changes.
+## Features:
+* Can detect both tab and space indent styles.
+* Automatically inspects your colorscheme and picks appropriate colors (gVim only).
+* Will highlight indent levels with alternating colors.
+* Full support for gVim and basic support for Terminal Vim.
+* Seems to work on Windows gVim 7.3 (haven't done any extensive tests though).
+* Customizable size for indent guides, eg. skinny guides (soft-tabs only).
+* Customizable start indent level.
+* **NEW:** Highlight support for files with a mixture of tab and space indent styles.
 
-Bring up the output of `git status` with `:Gstatus`.  Press `-` to
-`add`/`reset` a file's changes, or `p` to `add`/`reset` `--patch` that
-mofo.  And guess what `:Gcommit` does!
+## Requirements
+* Vim 7.2+
 
-`:Gblame` brings up an interactive vertical split with `git blame`
-output.  Press enter on a line to reblame the file as it stood in that
-commit, or `o` to open that commit in a split.  When you're done, use
-`:Gedit` in the historic buffer to go back to the work tree version.
+## Installation
+To install the plugin just copy `autoload`, `plugin`, `doc` directories into your `.vim` directory.
 
-`:Gmove` does a `git mv` on a file and simultaneously renames the
-buffer.  `:Gremove` does a `git rm` on a file and simultaneously deletes
-the buffer.
-
-Use `:Ggrep` to search the work tree (or any arbitrary commit) with
-`git grep`, skipping over that which is not tracked in the repository.
-`:Glog` loads all previous revisions of a file into the quickfix list so
-you can iterate over them and watch the file evolve!
-
-`:Gread` is a variant of `git checkout -- filename` that operates on the
-buffer rather than the filename.  This means you can use `u` to undo it
-and you never get any warnings about the file changing outside Vim.
-`:Gwrite` writes to both the work tree and index versions of a file,
-making it like `git add` when called from a work tree file and like
-`git checkout` when called from the index or a blob in history.
-
-Use `:Gbrowse` to open the current file on GitHub, with optional line
-range (try it in visual mode!).  If your current repository isn't on
-GitHub, `git instaweb` will be spun up instead.
-
-Add `%{fugitive#statusline()}` to `'statusline'` to get an indicator
-with the current branch in (surprise!) your statusline.
-
-Last but not least, there's `:Git` for running any arbitrary command,
-and `Git!` to open the output of a command in a temp file.
-
-Screencasts
------------
-
-* [A complement to command line git](http://vimcasts.org/e/31)
-* [Working with the git index](http://vimcasts.org/e/32)
-* [Resolving merge conflicts with vimdiff](http://vimcasts.org/e/33)
-* [Browsing the git object database](http://vimcasts.org/e/34)
-* [Exploring the history of a git repository](http://vimcasts.org/e/35)
-
-Installation
-------------
-
-If you don't have a preferred installation method, I recommend
-installing [pathogen.vim](https://github.com/tpope/vim-pathogen), and
-then simply copy and paste:
+Alternatively if you have [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332) installed, just clone this repo into a subdirectory of your `.vim/bundle` directory like so:
 
     cd ~/.vim/bundle
-    git clone git://github.com/tpope/vim-fugitive.git
+    git clone git://github.com/nathanaelkane/vim-indent-guides.git
 
-Once help tags have been generated, you can view the manual with
-`:help fugitive`.
+## Usage
+The default mapping to toggle the plugin is `<Leader>ig`
 
-If your Vim version is below 7.2, I recommend also installing
-[vim-git](https://github.com/tpope/vim-git) for syntax highlighting and
-other Git niceties.
+### gVim
+**This plugin should work with gVim out of the box, no configuration needed.** It will automatically inspect your colorscheme and pick appropriate colors.
 
-FAQ
----
+### Setting custom indent colors
+Here's an example of how to define custom colors instead of using the ones the plugin automatically generates for you. Add this to your `.vimrc` file:
 
-> I installed the plugin and started Vim.  Why don't any of the commands
-> exist?
+    let g:indent_guides_auto_colors = 0
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-Fugitive cares about the current file, not the current working
-directory.  Edit a file from the repository.
+Alternatively you can add the following lines to your colorscheme file.
 
-> I opened a new tab.  Why don't any of the commands exist?
+    hi IndentGuidesOdd  guibg=red   ctermbg=3
+    hi IndentGuidesEven guibg=green ctermbg=4
 
-Fugitive cares about the current file, not the current working
-directory.  Edit a file from the repository.
+### Terminal Vim
+At the moment Terminal Vim only has basic support. This means is that colors won't be automatically calculated based on your colorscheme. Instead, some preset colors are used depending on whether `background` is set to `dark` or `light`.
 
-> Why is `:Gbrowse` not using my system default browser?
+When `set background=dark` is used, the following highlight colors will be defined:
 
-`:Gbrowse` delegates to `git web--browse`, which is less than perfect
-when it comes to finding the default browser on Linux.  You can tell it
-the correct browser to use with `git config --global web.browser ...`.
-See `git web--browse --help` for details.
+    hi IndentGuidesOdd  ctermbg=black
+    hi IndentGuidesEven ctermbg=darkgrey
 
-> Here's a patch that automatically opens the quickfix window after
-> `:Ggrep`.
+Alternatively, when `set background=light` is used, the following highlight colors will be defined:
 
-This is a great example of why I recommend asking before patching.
-There are valid arguments to be made both for and against automatically
-opening the quickfix window.  Whenever I have to make an arbitrary
-decision like this, I ask what Vim would do.  And Vim does not open a
-quickfix window after `:grep`.
+    hi IndentGuidesOdd  ctermbg=white
+    hi IndentGuidesEven ctermbg=lightgrey
 
-Luckily, it's easy to implement the desired behavior without changing
-fugitive.vim.  The following autocommand will cause the quickfix window
-to open after any grep invocation:
+If for some reason it's incorrectly defining light highlight colors instead of dark ones or vice versa, the first thing you should check is that the `background` value is being set correctly for your colorscheme. Sometimes it's best to manually set the `background` value in your `.vimrc`, for example:
 
-    autocmd QuickFixCmdPost *grep* cwindow
+    colorscheme desert256
+    set background=dark
 
-Contributing
-------------
+Alternatively you can manually setup the highlight colors yourself, see `:help indent_guides_auto_colors` for an example.
 
-Before reporting a bug, you should try stripping down your Vim
-configuration and removing other plugins.  The sad nature of VimScript
-is that it is fraught with incompatibilities waiting to happen.  I'm
-happy to work around them where I can, but it's up to you to isolate
-the conflict.
+## Help
+`:help indent-guides`
 
-If your [commit message sucks](http://stopwritingramblingcommitmessages.com/),
-I'm not going to accept your pull request.  I've explained very politely
-dozens of times that
-[my general guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-are absolute rules on my own repositories, so I may lack the energy to
-explain it to you yet another time.  And please, if I ask you to change
-something, `git commit --amend`.
-
-Beyond that, don't be shy about asking before patching.  What takes you
-hours might take me minutes simply because I have both domain knowledge
-and a perverse knowledge of VimScript so vast that many would consider
-it a symptom of mental illness.  On the flip side, some ideas I'll
-reject no matter how good the implementation is.  "Send a patch" is an
-edge case answer in my book.
-
-Self-Promotion
---------------
-
-Like fugitive.vim? Follow the repository on
-[GitHub](https://github.com/tpope/vim-fugitive) and vote for it on
-[vim.org](http://www.vim.org/scripts/script.php?script_id=2975).  And if
-you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
-[Twitter](http://twitter.com/tpope) and
-[GitHub](https://github.com/tpope).
-
-License
--------
-
-Copyright (c) Tim Pope.  Distributed under the same terms as Vim itself.
-See `:help license`.
+## Screenshots
+<img src="http://i.imgur.com/7tMBl.png" width="448" height="448" alt="" />
+<img src="http://i.imgur.com/EvrqK.png" width="448" height="448" alt="" />
+<img src="http://i.imgur.com/hHqp2.png" width="448" height="448" alt="" />

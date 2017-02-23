@@ -9,7 +9,11 @@ set runtimepath+=/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim
 " Required:
 if dein#load_state('/Users/kosuke.kato/.vim/dein')
 call dein#begin('/Users/kosuke.kato/.vim/dein')
+call dein#add('Shougo/dein.vim')
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
+call dein#add('Shougo/neocomplcache.vim')
+" Rsense
+call dein#add('Shougo/neocomplcache-rsense.vim')
 "ファイル検索 ctrl p で検索
 call dein#add("ctrlpvim/ctrlp.vim")
 " ツリーの表示 ctrl e で表示
@@ -20,6 +24,7 @@ call dein#add('tpope/vim-endwise')
 " コメント文が楽になる shift v  ctrl --
 call dein#add('tomtom/tcomment_vim')
 " Gitを便利に使う
+
 call dein#add('scrooloose/vim-fugitive')
 "インデントの深さを視覚化
 call dein#add('nathanaelkane/vim-indent-guides')
@@ -159,3 +164,31 @@ autocmd User Rails Rnavcommand config config   -glob=*.*  -suffix= -default=rout
 autocmd User Rails nmap :<C-u>Rcontroller :<C-u>Rc
 autocmd User Rails nmap :<C-u>Rmodel :<C-u>Rm
 autocmd User Rails nmap :<C-u>Rview :<C-u>Rv
+
+" Rsense用の設定
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+"rsenseのインストールフォルダがデフォルトと異なるので設定
+let g:rsenseHome = expand("/Users/kosuke.kato/.rbenv/shims/rsense")
+let g:rsenseUseOmniFunc = 1
+
+" neocomplcacheの設定
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1

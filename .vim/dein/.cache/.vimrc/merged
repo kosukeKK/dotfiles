@@ -1,2 +1,2 @@
 100
-['/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim', 'Shougo/neosnippet-snippets', 'Shougo/neosnippet.vim', 'Shougo/vimshell', 'bronson/vim-trailing-whitespace', 'ctrlpvim/ctrlp.vim', 'nathanaelkane/vim-indent-guides', 'scrooloose/nerdtree', 'scrooloose/vim-fugitive', 'tomtom/tcomment_vim', 'tpope/vim-endwise', 'tpope/vim-rails']
+['/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim', 'Shougo/neocomplcache-rsense.vim', 'Shougo/neocomplcache.vim', 'Shougo/neosnippet-snippets', 'Shougo/neosnippet.vim', 'Shougo/vimshell', 'bronson/vim-trailing-whitespace', 'ctrlpvim/ctrlp.vim', 'nathanaelkane/vim-indent-guides', 'scrooloose/nerdtree', 'scrooloose/vim-fugitive', 'tomtom/tcomment_vim', 'tpope/vim-endwise', 'tpope/vim-rails']
