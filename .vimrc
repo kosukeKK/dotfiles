@@ -10,14 +10,14 @@ set runtimepath+=/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state('/Users/kosuke.kato/.vim/dein')
 call dein#begin('/Users/kosuke.kato/.vim/dein')
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
-"ファイル検索
+"ファイル検索 ctrl p で検索
 call dein#add("ctrlpvim/ctrlp.vim")
 " ツリーの表示 ctrl e で表示
 call dein#add('scrooloose/nerdtree')
 autocmd VimEnter * execute 'NERDTree'
 " Rubyのエンドを自動追加
 call dein#add('tpope/vim-endwise')
-" コメント文が楽になる
+" コメント文が楽になる shift v  ctrl --
 call dein#add('tomtom/tcomment_vim')
 " Gitを便利に使う
 call dein#add('scrooloose/vim-fugitive')
