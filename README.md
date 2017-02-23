@@ -9,7 +9,7 @@ vim☓railsで開発するなら一式入ってるから便利なはず
 brew install vim
 
 #ショートカット作っとく
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/.vimrc ~/.vimrc<br>
 ln -sf ~/dotfiles/.vim ~/.vim
 
 使い方<br>
