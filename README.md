@@ -6,6 +6,8 @@ vim☓railsで開発するなら一式入ってるから便利なはず
 インストール手順
 
 #macvimの標準設定だとdeinがインストールできないから上げとく
+git clone このリポジトリ<br>
+.vimrcの中の/Users/???/みたいなパスを自分のパソコンと合わせる<br>
 brew install vim
 #標準設定をviからViMに
 export PATH="/usr/local/bin:$PATH"
