@@ -4,11 +4,11 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/kosuke.kato/.vim/dein')
-call dein#begin('/Users/kosuke.kato/.vim/dein')
+if dein#load_state('/Users/KT/.vim/dein')
+call dein#begin('/Users/KT/.vim/dein')
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 "ファイル検索 ctrl p で検索
 call dein#add("ctrlpvim/ctrlp.vim")
@@ -27,7 +27,7 @@ call dein#add('nathanaelkane/vim-indent-guides')
 call dein#add('bronson/vim-trailing-whitespace')
 " Let dein manage dein
 " Required:
-call dein#add('/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
 call dein#add('Shougo/neosnippet.vim')
@@ -47,7 +47,7 @@ syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+ call dein#install()
 endif
 
 "End dein Scripts-------------------------
