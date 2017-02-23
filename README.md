@@ -1,5 +1,3 @@
-
-# dotfiles
 # dotfiles
 macの設定ファイルとかいいつつ
 vimの設定しか入ってない
