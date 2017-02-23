@@ -7,7 +7,8 @@ vim☓railsで開発するなら一式入ってるから便利なはず
 
 #macvimの標準設定だとdeinがインストールできないから上げとく
 brew install vim
-
+#標準設定をviからViMに
+export PATH="/usr/local/bin:$PATH"
 #ショートカット作っとく
 ln -sf ~/dotfiles/.vimrc ~/.vimrc<br>
 ln -sf ~/dotfiles/.vim ~/.vim
