@@ -128,9 +128,12 @@ set mouse=a
 set ttymouse=xterm2
 
 " Tab系
+
+set softtabstop=2 "連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 " 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
+set list
 " Tab文字を半角スペースにする
+set listchars=tab:\▸\-
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
 set tabstop=2
@@ -138,6 +141,17 @@ set tabstop=2
 set shiftwidth=2
 "  なんかこれ入れないと補完が効かない
 set nopaste
+
+set lazyredraw
+" 音消す
+set vb t_vb=
+set undofile
+set undodir=~/vimundo
+" バックスペースでいろいろ消せる
+set backspace=indent,start
+set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
+set fileformats=unix,mac,dos
+
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
@@ -161,6 +175,34 @@ autocmd QuickFixCmdPost *grep* cwindow
 let g:indent_guides_enable_on_vim_startup = 1
 
 " alias設定
+" splitのalias
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " rails alias
 autocmd User Rails.controller* Rnavcommand api app/controllers/api -glob=**/* -suffix=_controller.rb
