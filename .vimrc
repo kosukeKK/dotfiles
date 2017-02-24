@@ -79,7 +79,8 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
+" コピーがクリップボードにコピーになる
+set clipboard+=unnamed
 
 " 見た目系
 set guifont=Ricty-RegularForPowerline:h14
