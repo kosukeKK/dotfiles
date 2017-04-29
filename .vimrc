@@ -1,45 +1,30 @@
 "dein Scripts-----------------------------
 if &compatible
-    set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/kT/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/KT/.vim/dein')
-call dein#begin('/Users/KT/.vim/dein')
-call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
-"ファイル検索 ctrl p で検索
-call dein#add("ctrlpvim/ctrlp.vim")
-" ツリーの表示 ctrl e で表示
-call dein#add('scrooloose/nerdtree')
-autocmd VimEnter * execute 'NERDTree'
-" Rubyのエンドを自動追加
-call dein#add('tpope/vim-endwise')
-" コメント文が楽になる shift v  ctrl --
-call dein#add('tomtom/tcomment_vim')
-" Gitを便利に使う
-call dein#add('scrooloose/vim-fugitive')
-"インデントの深さを視覚化
-call dein#add('nathanaelkane/vim-indent-guides')
-" 不要なスペースを可視化
-call dein#add('bronson/vim-trailing-whitespace')
-" Let dein manage dein
-" Required:
-call dein#add('/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('/Users/kT/.cache/dein')
+  call dein#begin('/Users/kT/.cache/dein')
 
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/kT/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-" You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
-" Required:
-call dein#end()
-call dein#save_state()
-  endif
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
@@ -47,9 +32,23 @@ syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
- call dein#install()
+  call dein#install()
 endif
 
+call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
+"ファイル検索 ctrl p で検索
+call dein#add("ctrlpvim/ctrlp.vim")
+" ツリーの表示 ctrl e で表示
+call dein#add('scrooloose/nerdtree')
+"autocmd VimEnter * execute 'NERDTree'
+" Rubyのエンドを自動追加
+call dein#add('tpope/vim-endwise')
+"コメント文が楽になる shift v  ctrl --
+call dein#add('tomtom/tcomment_vim')
+" Gitを便利に使う
+call dein#add('scrooloose/vim-fugitive')
+" 不要なスペースを可視化
+call dein#add('bronson/vim-trailing-whitespace')
 "End dein Scripts-------------------------
 
 "文字コードをUFT-8に設定
@@ -69,8 +68,6 @@ set showcmd
 " 見た目系
 " 行番号を表示
 set number
-" ペースト時に行番号をいれない
-set paste
 " 現在の行を強調表示
 set cursorline
 " 現在の行を強調表示（縦）
@@ -144,11 +141,9 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
 " ステータス行に現在のgitブランチを表示する
-set statusline=%{fugitive#statusline()}
+"set statusline=%{fugitive#statusline()}
 " ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
 set statusline+=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
 
 " alias設定
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
