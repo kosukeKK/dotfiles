@@ -4,7 +4,7 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('/Users/kosuke.kato/.vim/dein')
@@ -38,12 +38,15 @@ call dein#add('scrooloose/vim-fugitive')
 call dein#add('bronson/vim-trailing-whitespace')
 " Let dein manage dein
 " Required:
-call dein#add('/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim')
-"　英単語を補完 "call dein#add('ujihisa/neco-look')
+call dein#add('/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim')
+"　英単語を補完
+call dein#add('ujihisa/neco-look')
 " 情報を見やすく
 call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
+call dein#add('/Users/KT/.vim/dein/repos/github.com/Shougo/dein.vim')
+
 " Add or remove your plugins here:
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
@@ -62,7 +65,7 @@ syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+ call dein#install()
 endif
 
 "End dein Scripts-------------------------
