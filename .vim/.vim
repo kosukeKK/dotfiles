@@ -1,0 +1,1 @@
+/Users/kosuke.kato/dotfiles/.vim

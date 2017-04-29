@@ -1,9 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/kosuke.kato/project/jmty/beagle'
-let g:netrw_dirhist_2='/Users/kosuke.kato/project/jmty/beagle/.bundle'
-let g:netrw_dirhist_3='/Users/kosuke.kato/project/jmty/beagle'
-let g:netrw_dirhist_4='/Users/kosuke.kato/project/jmty/beagle/config'
-let g:netrw_dirhist_5='/Users/kosuke.kato/project/jmty/beagle'
-let g:netrw_dirhist_6='/Users/kosuke.kato/project/jmty/beagle/dockerfiles'
-let g:netrw_dirhist_7='/Users/kosuke.kato/project/jmty/beagle/dockerfiles/elasticsearch'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/kosuke.kato/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/parser-2.3.3.1'
+let g:netrw_dirhist_2='/Users/kosuke.kato/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/parser-2.3.3.1/lib'
+let g:netrw_dirhist_3='/Users/kosuke.kato/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/parser-2.3.3.1/lib/parser'

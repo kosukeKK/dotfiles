@@ -9,9 +9,11 @@ set runtimepath+=/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim
 " Required:
 if dein#load_state('/Users/kosuke.kato/.vim/dein')
 call dein#begin('/Users/kosuke.kato/.vim/dein')
+let s:lazy_toml = '~/.dein_lazy.toml'
+call dein#load_toml(s:lazy_toml, {'lazy': 1})
 call dein#add('Shougo/dein.vim')
 call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
-call dein#add('tpope/vim-haml')
+"call dein#add('tpope/vim-haml')
 call dein#add('Shougo/neocomplcache.vim')
 " Rsense
 call dein#add('Shougo/neocomplcache-rsense.vim')
@@ -24,22 +26,20 @@ call dein#add('ryanoasis/vim-devicons')
 " ツリーの表示 ctrl e で表示
 call dein#add('scrooloose/nerdtree')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+" nerdtree初期表示"
 autocmd VimEnter * execute 'NERDTree'
 " Rubyのエンドを自動追加
 call dein#add('tpope/vim-endwise')
 " コメント文が楽になる shift v  ctrl --
-call dein#add('tomtom/tcomment_vim')
+"call dein#add('tomtom/tcomment_vim')
 " Gitを便利に使う
 call dein#add('scrooloose/vim-fugitive')
-"インデントの深さを視覚化
-call dein#add('nathanaelkane/vim-indent-guides')
 " 不要なスペースを可視化
 call dein#add('bronson/vim-trailing-whitespace')
 " Let dein manage dein
 " Required:
 call dein#add('/Users/kosuke.kato/.vim/dein/repos/github.com/Shougo/dein.vim')
-"　英単語を補完
-call dein#add('ujihisa/neco-look')
+"　英単語を補完 "call dein#add('ujihisa/neco-look')
 " 情報を見やすく
 call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-fugitive')
@@ -67,6 +67,7 @@ endif
 
 "End dein Scripts-------------------------
 
+
 "文字コードをUFT-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
@@ -84,8 +85,6 @@ set clipboard+=unnamed
 
 " 見た目系
 set guifont=Ricty-RegularForPowerline:h14
-" 行番号を表示
-set number
 " ペースト時に行番号をいれない
 set paste
 " 現在の行を強調表示
@@ -96,10 +95,8 @@ set cursorcolumn
 set virtualedit=onemore
 " インデントはスマートインデント
 set smartindent
-" ビープ音を可視化
-set visualbell
 " 括弧入力時の対応する括弧を表示
-set showmatch
+"set showmatch
 " ステータスラインを常に表示
 set laststatus=2
 " コマンドラインの補完
@@ -119,26 +116,14 @@ imap ( ()<LEFT>
 
 " コマンドラインモードで<Tab>キーによるファイル名補完を有効にする
 set wildmenu
-" 入力中のコマンドを表示する
-set showcmd
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
-" マウス有効
-set mouse=a
-set ttymouse=xterm2
 
 " Tab系
-
-set softtabstop=2 "連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list
 " Tab文字を半角スペースにする
 set listchars=tab:\▸\-
-set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=2
-" 行頭でのTab文字の表示幅
-set shiftwidth=2
 "  なんかこれ入れないと補完が効かない
 set nopaste
 
@@ -153,10 +138,6 @@ set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
 set fileformats=unix,mac,dos
 
 " 検索系
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
 " 検索文字列入力時に順次対象文字列にヒットさせる
 set incsearch
 " 検索時に最後まで行ったら最初に戻る
@@ -167,12 +148,33 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
-" ステータス行に現在のgitブランチを表示する
-"set statusline=%{fugitive#statusline()}
-" ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
-"set statusline+=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
+syntax on
+" マウス有効
+set mouse=a
+set ttymouse=xterm2
+" 行番号を表示
+set number
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+set tabstop=4
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+set t_Co=256
+set completeopt=menuone
+for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+  exec "imap " . k . " " . k . "<C-N><C-P>"
+endfor
+
+imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
+set expandtab
+set tabstop=2
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
+"連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set softtabstop=2
+set autoindent
+set smartindent
 
 " alias設定
 " splitのalias
